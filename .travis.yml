@@ -1,0 +1,15 @@
+language: python
+branches:
+    only:
+        - master
+python:
+  - "3.2"
+  - "3.3"
+  - "3.4"
+install:
+  - pip install -qr tests/requirements.txt
+script:
+  - cd tests/
+  - PYTHONPATH="$PYTHONPATH:.." coverage run test_*.py
+after_success:
+    - coveralls
