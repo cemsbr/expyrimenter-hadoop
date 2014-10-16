@@ -10,6 +10,7 @@ install:
   - pip install -qr tests/requirements.txt
 script:
   - cd tests/
-  - PYTHONPATH="$PYTHONPATH:.." coverage run test_*.py
+  - make tests
+  - make coverage
 after_success:
     - coveralls

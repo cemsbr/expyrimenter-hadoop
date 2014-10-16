@@ -71,10 +71,12 @@ class Shell(Runnable):
             kwargs['stderr'] = subprocess.STDOUT
 
         if not (self._stdout or self._stderr):
-            return subprocess.check_call(self._cmd, **kwargs)
+            output = subprocess.check_call(self._cmd, **kwargs)
         else:
-            return subprocess.check_output(self._cmd, **kwargs).strip()
+            output = subprocess.check_output(self._cmd, **kwargs).strip()
+
         self.run_pos()
+        return output
 
     def was_successful(self):
         """Runs the command and returns whether the return code is 0.
