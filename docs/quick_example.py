@@ -3,7 +3,6 @@ from expyrimenter import SSH, Executor
 
 
 # Suppose we have a cluster with hostnames vm0, vm1 and vm2
-# (and their clock are synchronized)
 cluster = ['hdpd%d' % i for i in range(0, 3)]
 
 # Let's run the command below in all VMs:

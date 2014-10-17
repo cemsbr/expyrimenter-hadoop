@@ -2,6 +2,7 @@ language: python
 branches:
     only:
         - master
+        - cadu
 python:
   - "3.2"
   - "3.3"
