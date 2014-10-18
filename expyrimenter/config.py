@@ -1,4 +1,4 @@
-from os.path import join, expanduser, exists
+from os.path import join, expanduser, dirname
 from configparser import ConfigParser
 import logging
 
@@ -10,35 +10,25 @@ class Config:
 
     >>> from expyrimenter import Config
     >>> config = Config('my_section')
-    >>> print(config.get('var1'))
+    >>> config.get('var1')
     'one'
-    >>> print(config.get('var2', 'default_value'))
-    'default_value'
-
+    >>> config.get('var2', 'default_value')
+    default_value
+    >>> config.get('var2') is None
+    True
     """
-    _cfg_file = join(expanduser('~'), '.expyrimenter', 'config.ini')
-    _cfg = None
+    user_ini = join(expanduser('~'), '.expyrimenter', 'config.ini')
+    _default_ini = join(dirname(__file__), 'config.ini')
     _logger = logging.getLogger('config')
 
     def __init__(self, section):
-        if Config._cfg is None:
-            Config._cfg = ConfigParser()
-            self._check_file()
-            Config.read()
+        parser = ConfigParser()
+        parser.read([Config._default_ini, Config.user_ini])
 
-        if section in Config._cfg.sections():
-            self._section = Config._cfg[section]
+        if section in parser.sections():
+            self._section = parser[section]
         else:
             self._section = {}
 
     def get(self, key, default=None):
         return self._section.get(key, default)
-
-    @staticmethod
-    def read():
-        Config._cfg.read(Config._cfg_file)
-        Config._logger.debug('%s read' % Config._cfg_file)
-
-    def _check_file(self):
-        if not exists(Config._cfg_file):
-            self._logger.error('%s not found.' % self._cfg_file)
