@@ -15,4 +15,4 @@ class Runnable:
 
     # Exceptions will be displayed to the user
     def run(self):
-        raise NotImplementedError
+        raise NotImplementedError('Runnable.run not implemented')
