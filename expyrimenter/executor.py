@@ -86,4 +86,4 @@ class Executor:
         s._executor.shutdown()
         s._future_runnables.clear()
         s._function_titles.clear()
-        s.results.clear()
+        del s.results[:]
