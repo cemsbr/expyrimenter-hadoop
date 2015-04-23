@@ -4,7 +4,6 @@ from expyrimenter import SSH
 
 
 class TestSSH(unittest.TestCase):
-
     def test_command_has_params(self):
         params = '-p 2222 user@hostname'
         cmd = SSH(params, '').command
@@ -35,6 +34,7 @@ class TestSSH(unittest.TestCase):
         SSH.await_availability('')
         self.assertEqual(1, failed_mock.call_count)
         self.assertFalse(sleep_mock.called)
+
 
 if __name__ == '__main__':
     unittest.main()

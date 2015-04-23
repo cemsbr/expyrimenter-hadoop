@@ -1,6 +1,5 @@
 import unittest
 from mock import Mock, patch
-import subprocess
 from subprocess import CalledProcessError
 from expyrimenter import Shell
 
@@ -106,6 +105,7 @@ class TestShell(unittest.TestCase):
         exception = CalledProcessError(returncode=1, cmd='')
         with patch('subprocess.check_output', side_effect=exception):
             self.assertTrue(shell.has_failed())
+
 
 if __name__ == '__main__':
     unittest.main()

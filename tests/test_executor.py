@@ -152,7 +152,6 @@ def has_not_title(msg):
 
 
 class Matcher:
-
     def __init__(self, compare):
         self.compare = compare
 
@@ -162,6 +161,7 @@ class Matcher:
 
 def test_function():
     return TestExecutor.output
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -50,5 +50,6 @@ class TestConfig(unittest.TestCase):
         value = cfg.get(TestConfig.nonexistent, default)
         self.assertIs(default, value)
 
+
 if __name__ == '__main__':
     unittest.main()
